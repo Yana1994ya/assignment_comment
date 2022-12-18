@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../ui/paged_comments_list_view.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({ super.key });
 
@@ -17,9 +19,7 @@ class HomePage extends StatelessWidget {
           },
         ),],
       ),
-      body: const Center(
-        child: Text('Hello World'),
-      ),
+      body: const PagedCommentsListView(),
     );
   }
 }

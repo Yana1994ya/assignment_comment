@@ -2,9 +2,9 @@ import 'package:assignment_comment/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:go_router/go_router.dart';
-// import 'package:dio/dio.dart';
 
 void main() {
+  WidgetsFlutterBinding();
   // Prevent landscape mode, not supported for this app.
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
