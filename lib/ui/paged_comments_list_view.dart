@@ -1,4 +1,4 @@
-import 'package:assignment_comment/controllers/comments_loader.dart';
+import 'package:assignment_comment/controllers/comments_controller.dart';
 import 'package:assignment_comment/models/comment.dart';
 import 'package:assignment_comment/ui/comment_list_item.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,8 @@ class PagedCommentsListView extends StatefulWidget {
   const PagedCommentsListView({super.key});
 
   @override
-  _PagedCommentsListViewState createState() => _PagedCommentsListViewState();
+  // _PagedCommentsListViewState createState() => _PagedCommentsListViewState();
+  State<PagedCommentsListView> createState() => _PagedCommentsListViewState();
 }
 
 class _PagedCommentsListViewState extends State<PagedCommentsListView> {
@@ -27,7 +28,7 @@ class _PagedCommentsListViewState extends State<PagedCommentsListView> {
 
   Future<void> _fetchPage(int pageKey) async {
     try {
-      final newItems = await CommentsLoader.readComments(pageKey, _pageSize);
+      final newItems = await CommentsController.readComments(pageKey, _pageSize);
       final isLastPage = newItems.length < _pageSize;
       if (isLastPage) {
         _pagingController.appendLastPage(newItems);

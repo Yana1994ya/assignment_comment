@@ -1,7 +1,7 @@
 import 'package:assignment_comment/models/comment.dart';
 import 'package:dio/dio.dart';
 
-class CommentsLoader {
+class CommentsController {
   static final Dio dio = Dio(
     BaseOptions(
       baseUrl: 'https://jsonplaceholder.typicode.com',
@@ -18,7 +18,13 @@ class CommentsLoader {
 
     final comments = response.data as List<dynamic>;
 
-
     return comments.map((comment) => Comment.fromJson(comment)).toList();
   }
+
+  static Future<Comment> uploadComment(String userName, String userEmail, String userComment) async {
+    final response = await dio.post('/comments', data: {'postId': 1, 'name': userName , 'email' : userEmail, 'body' : userComment});
+    final newComment = Comment.fromJson(response.data);
+    return newComment;
+  }
+
 }

@@ -21,6 +21,7 @@ Comment _$CommentFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Comment {
   int get id => throw _privateConstructorUsedError;
+  int get postId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $CommentCopyWith<$Res> {
   factory $CommentCopyWith(Comment value, $Res Function(Comment) then) =
       _$CommentCopyWithImpl<$Res, Comment>;
   @useResult
-  $Res call({int id, String name, String email, String body});
+  $Res call({int id, int postId, String name, String email, String body});
 }
 
 /// @nodoc
@@ -52,6 +53,7 @@ class _$CommentCopyWithImpl<$Res, $Val extends Comment>
   @override
   $Res call({
     Object? id = null,
+    Object? postId = null,
     Object? name = null,
     Object? email = null,
     Object? body = null,
@@ -60,6 +62,10 @@ class _$CommentCopyWithImpl<$Res, $Val extends Comment>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      postId: null == postId
+          ? _value.postId
+          : postId // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
@@ -84,7 +90,7 @@ abstract class _$$_CommentCopyWith<$Res> implements $CommentCopyWith<$Res> {
       __$$_CommentCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String email, String body});
+  $Res call({int id, int postId, String name, String email, String body});
 }
 
 /// @nodoc
@@ -98,6 +104,7 @@ class __$$_CommentCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? postId = null,
     Object? name = null,
     Object? email = null,
     Object? body = null,
@@ -106,6 +113,10 @@ class __$$_CommentCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      postId: null == postId
+          ? _value.postId
+          : postId // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
@@ -128,6 +139,7 @@ class __$$_CommentCopyWithImpl<$Res>
 class _$_Comment with DiagnosticableTreeMixin implements _Comment {
   const _$_Comment(
       {required this.id,
+      required this.postId,
       required this.name,
       required this.email,
       required this.body});
@@ -138,6 +150,8 @@ class _$_Comment with DiagnosticableTreeMixin implements _Comment {
   @override
   final int id;
   @override
+  final int postId;
+  @override
   final String name;
   @override
   final String email;
@@ -146,7 +160,7 @@ class _$_Comment with DiagnosticableTreeMixin implements _Comment {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Comment(id: $id, name: $name, email: $email, body: $body)';
+    return 'Comment(id: $id, postId: $postId, name: $name, email: $email, body: $body)';
   }
 
   @override
@@ -155,6 +169,7 @@ class _$_Comment with DiagnosticableTreeMixin implements _Comment {
     properties
       ..add(DiagnosticsProperty('type', 'Comment'))
       ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('postId', postId))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('body', body));
@@ -166,6 +181,7 @@ class _$_Comment with DiagnosticableTreeMixin implements _Comment {
         (other.runtimeType == runtimeType &&
             other is _$_Comment &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.postId, postId) || other.postId == postId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.body, body) || other.body == body));
@@ -173,7 +189,7 @@ class _$_Comment with DiagnosticableTreeMixin implements _Comment {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, email, body);
+  int get hashCode => Object.hash(runtimeType, id, postId, name, email, body);
 
   @JsonKey(ignore: true)
   @override
@@ -192,6 +208,7 @@ class _$_Comment with DiagnosticableTreeMixin implements _Comment {
 abstract class _Comment implements Comment {
   const factory _Comment(
       {required final int id,
+      required final int postId,
       required final String name,
       required final String email,
       required final String body}) = _$_Comment;
@@ -200,6 +217,8 @@ abstract class _Comment implements Comment {
 
   @override
   int get id;
+  @override
+  int get postId;
   @override
   String get name;
   @override

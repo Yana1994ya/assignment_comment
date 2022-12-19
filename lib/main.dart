@@ -1,7 +1,8 @@
+import 'package:assignment_comment/screens/write_comment.dart';
 import 'package:assignment_comment/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
   WidgetsFlutterBinding();
@@ -11,24 +12,41 @@ void main() {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final GoRouter _router = GoRouter(
+    routes: <RouteBase>[
+      GoRoute(
+        path: '/',
+        builder: (BuildContext context, GoRouterState state) {
+          return const HomePage();
+        },
+        routes: <RouteBase>[
+          GoRoute(
+            path: 'write_comment',
+            builder: (BuildContext context, GoRouterState state) {
+              return const WriteComment();
+            },
+          ),
+        ],
+      ),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'CommentsApp',
       theme: ThemeData(
-
         primarySwatch: Colors.indigo,
       ),
-      home: const HomePage(),
+      routerConfig: _router,
     );
+
   }
 }
-
-
