@@ -14,10 +14,26 @@ class CommentForm extends StatefulWidget {
 
 class CommentFormState extends State<CommentForm> {
   final _formKey = GlobalKey<FormState>();
+
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final commentController = TextEditingController();
+
+  final nameFocusNode = FocusNode();
+  final emailFocusNode = FocusNode();
+  final commentFocusNode = FocusNode();
+
   bool isLoading = false;
+
+
+  @override
+  void dispose() {
+    nameFocusNode.dispose();
+    emailFocusNode.dispose();
+    commentFocusNode.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +44,13 @@ class CommentFormState extends State<CommentForm> {
           Padding(
             padding: EdgeInsets.all(10),
             child: TextFormField(
+              autofocus: true,
+              focusNode: nameFocusNode,
+              onFieldSubmitted: (_){
+                nameFocusNode.unfocus();
+                FocusScope.of(context).requestFocus(emailFocusNode);
+              },
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 hintText: 'Enter Your Name',
               ),
@@ -48,6 +71,12 @@ class CommentFormState extends State<CommentForm> {
           Padding(
             padding: EdgeInsets.all(10),
             child: TextFormField(
+              focusNode: emailFocusNode,
+              onFieldSubmitted: (_){
+                emailFocusNode.unfocus();
+                FocusScope.of(context).requestFocus(commentFocusNode);
+              },
+              textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 hintText: 'Enter Your Email',
               ),
@@ -69,6 +98,7 @@ class CommentFormState extends State<CommentForm> {
           Padding(
             padding: EdgeInsets.all(10),
             child: TextFormField(
+              focusNode: commentFocusNode,
               maxLines: 5,
               decoration: const InputDecoration(
                 hintText: 'Enter Your Comment',
