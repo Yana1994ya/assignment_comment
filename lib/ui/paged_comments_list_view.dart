@@ -8,7 +8,6 @@ class PagedCommentsListView extends StatefulWidget {
   const PagedCommentsListView({super.key});
 
   @override
-  // _PagedCommentsListViewState createState() => _PagedCommentsListViewState();
   State<PagedCommentsListView> createState() => _PagedCommentsListViewState();
 }
 

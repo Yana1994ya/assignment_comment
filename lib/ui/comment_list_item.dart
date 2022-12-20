@@ -37,7 +37,6 @@ class CommentListItem extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(comment.email),
-
                 ]
             ),
             TableRow(
@@ -47,7 +46,6 @@ class CommentListItem extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(comment.body),
-
                 ]
             ),
           ],

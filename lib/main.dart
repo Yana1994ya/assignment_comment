@@ -1,8 +1,6 @@
-import 'package:assignment_comment/screens/write_comment.dart';
-import 'package:assignment_comment/screens/homepage.dart';
+import 'package:assignment_comment/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 
 void main() {
   WidgetsFlutterBinding();
@@ -12,30 +10,11 @@ void main() {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final GoRouter _router = GoRouter(
-    routes: <RouteBase>[
-      GoRoute(
-        path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return const HomePage();
-        },
-        routes: <RouteBase>[
-          GoRoute(
-            path: 'write_comment',
-            builder: (BuildContext context, GoRouterState state) {
-              return const WriteComment();
-            },
-          ),
-        ],
-      ),
-    ],
-  );
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      routerConfig: _router,
+      routerConfig: router,
     );
 
   }
