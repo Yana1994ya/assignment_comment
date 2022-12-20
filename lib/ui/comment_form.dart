@@ -16,26 +16,37 @@ class CommentForm extends StatefulWidget {
 class CommentFormState extends State<CommentForm> {
   final _formKey = GlobalKey<FormState>();
 
+  // Text editing controllers, for reading the values of the various fields
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final commentController = TextEditingController();
 
+  // Focus nodes, for changing focus between fields
   final nameFocusNode = FocusNode();
   final emailFocusNode = FocusNode();
   final commentFocusNode = FocusNode();
 
+  // Display loading indicator instead of the "Add Comment" button
+  // to indicate activity
   bool isLoading = false;
-
 
   @override
   void dispose() {
+    // Dispose of all the controllers and focus nodes
     nameFocusNode.dispose();
     emailFocusNode.dispose();
     commentFocusNode.dispose();
 
+    nameController.dispose();
+    emailController.dispose();
+    commentController.dispose();
+
     super.dispose();
   }
 
+  // Validation functions for the different fields
+
+  // Validate names, only letters and spaces, and at least 2 letters
   static String? _validateName(String? value)  {
     if (value == null || value.isEmpty) {
       return 'Name is required!';
@@ -49,6 +60,7 @@ class CommentFormState extends State<CommentForm> {
     return null;
   }
 
+  // Validate email, use a common email regex, can also use common libraries
   static String? _validateEmail(String? value)  {
     if (value == null || value.isEmpty) {
       return 'Email is required!';
@@ -63,6 +75,7 @@ class CommentFormState extends State<CommentForm> {
     return null;
   }
 
+  // Validate comment, just make sure anything is written
   static String? _validateComment(String? value)  {
     if (value == null || value.isEmpty) {
       return 'Content is required!';
@@ -84,6 +97,7 @@ class CommentFormState extends State<CommentForm> {
             focusNode: nameFocusNode,
             onFieldSubmitted: (_){
               nameFocusNode.unfocus();
+              // Next input is email
               FocusScope.of(context).requestFocus(emailFocusNode);
             },
             textInputAction: TextInputAction.next,
@@ -98,6 +112,7 @@ class CommentFormState extends State<CommentForm> {
             focusNode: emailFocusNode,
             onFieldSubmitted: (_){
               emailFocusNode.unfocus();
+              // next input is comment
               FocusScope.of(context).requestFocus(commentFocusNode);
             },
             textInputAction: TextInputAction.next,

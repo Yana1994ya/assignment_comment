@@ -3,9 +3,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 class CommentsController {
-  static final Dio dio = Dio(
+  // Read comment from jsonplaceholder.typicode.com
+  static final Dio dioRead = Dio(
     BaseOptions(
       baseUrl: 'https://jsonplaceholder.typicode.com',
+    ),
+  );
+
+  // The instructions asked to send the new comments to a different url
+  static final Dio dioUpload = Dio(
+    BaseOptions(
+      baseUrl: 'https://cambium.co.il',
     ),
   );
 
@@ -19,7 +27,7 @@ class CommentsController {
 
     final startAt = pageNumber * pageSize;
     final response =
-        await dio.get('/comments?_limit=$pageSize&_start=$startAt');
+        await dioRead.get('/comments?_limit=$pageSize&_start=$startAt');
 
     final comments = response.data as List<dynamic>;
     return comments.map((comment) => Comment.fromJson(comment)).toList();
@@ -27,7 +35,7 @@ class CommentsController {
 
   static Future<Comment> uploadComment(
       String userName, String userEmail, String userComment) async {
-    final response = await dio.post('/comments', data: {
+    final response = await dioUpload.post('/test/testAssignComment', data: {
       'postId': 1,
       'name': userName,
       'email': userEmail,
